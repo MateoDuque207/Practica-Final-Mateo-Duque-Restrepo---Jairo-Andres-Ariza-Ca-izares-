@@ -1,10 +1,3 @@
-"""
-Parser de FEN para Ajedrez
-Proyecto final de Lenguajes de Programacion
-
-Este programa valida cadenas FEN y dibuja el tablero si es valido
-"""
-
 import tkinter as tk
 from tkinter import messagebox
 
