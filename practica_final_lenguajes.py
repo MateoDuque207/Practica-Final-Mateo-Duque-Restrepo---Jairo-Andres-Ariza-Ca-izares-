@@ -158,9 +158,9 @@ class Ventana:
         self.root = root
         self.root.title("Parser FEN - Ajedrez")
         self.root.geometry("700x750")
-        self.root.configure(bg='#2c3e50')
+        self.root.configure(bg='#1e1e2f')
         
-        # Piezas en unicode
+        # Piezas en unicode (creamos un diccionario con las piezas y sus simbolos)
         self.piezas = {
             'K': '♔', 'Q': '♕', 'R': '♖', 'B': '♗', 'N': '♘', 'P': '♙',
             'k': '♚', 'q': '♛', 'r': '♜', 'b': '♝', 'n': '♞', 'p': '♟'
@@ -170,35 +170,36 @@ class Ventana:
     
     def crear_interfaz(self):
         # Titulo
-        titulo = tk.Label(self.root, text="Parser FEN", font=('Arial', 20, 'bold'), bg='#2c3e50', fg='white')
+        titulo = tk.Label(self.root, text="Parser FEN", font=('Segoe UI', 24, 'bold'), bg='#1e1e2f', fg='#e0b973')
         titulo.pack(pady=15)
         
         # Instrucciones
-        inst = tk.Label(self.root, text="Ingrese una cadena FEN:", font=('Arial', 11), bg='#2c3e50', fg='white')
+        inst = tk.Label(self.root, text="Ingrese una cadena FEN:", font=('Segoe UI', 12), bg='#1e1e2f', fg='#dcdcdc')
         inst.pack(pady=5)
         
         # Caja de texto
-        self.entrada = tk.Entry(self.root, width=60, font=('Courier', 10))
+        self.entrada = tk.Entry(self.root, width=60, font=('Trebuchet MS', 10))
         self.entrada.pack(pady=10)
         
-        # Ejemplo inicial
+        # Ejemplo inicial (el tablero inicial basicamente)
         ejemplo = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
         self.entrada.insert(0, ejemplo)
         
         # Boton
-        boton = tk.Button(self.root, text="Analizar", command=self.analizar, font=('Arial', 12), bg='#27ae60', fg='white', padx=20, pady=8)
+        boton = tk.Button(self.root, text="Analizar", command=self.analizar, font=('Trebuchet MS', 12), bg='#27ae60', fg='white', padx=20, pady=8)
         boton.pack(pady=10)
         
         # Area del tablero
-        self.area_tablero = tk.Frame(self.root, bg='#2c3e50')
+        self.area_tablero = tk.Frame(self.root, bg='#1e1e2f')
         self.area_tablero.pack(pady=15)
         
         # Mensaje
-        self.mensaje = tk.Label(self.root, text="", font=('Arial', 10), bg='#2c3e50', fg='white')
+        self.mensaje = tk.Label(self.root, text="", font=('Segoe UI', 12, 'italic'), bg='#1e1e2f', fg='#dcdcdc')
+
         self.mensaje.pack(pady=10)
     
     def analizar(self):
-        cadena = self.entrada.get().strip()
+        cadena = self.entrada.get()
         
         if not cadena:
             messagebox.showwarning("Advertencia", "Ingrese una cadena FEN")
@@ -233,9 +234,9 @@ class Ventana:
             for col in range(8):
                 # Color de la casilla
                 if (fila + col) % 2 == 0:
-                    color = '#f0d9b5'
+                    color = '#f5deb3'
                 else:
-                    color = '#b58863'
+                    color = '#8b5a2b'
                 
                 # Obtener pieza
                 pieza = tablero[fila][col]
@@ -247,12 +248,12 @@ class Ventana:
         
         # Numeros de fila
         for i in range(8):
-            num = tk.Label(self.area_tablero, text=str(8-i), font=('Arial', 10, 'bold'), bg='#2c3e50', fg='white', width=2)
+            num = tk.Label(self.area_tablero, text=str(8-i), font=('Arial', 10, 'bold'), bg='#1e1e2f', fg='#e0b973', width=2)
             num.grid(row=i, column=8, padx=5)
         
         # Letras de columna
         for i in range(8):
-            letra = tk.Label(self.area_tablero, text=chr(ord('a')+i), font=('Arial', 10, 'bold'), bg='#2c3e50', fg='white')
+            letra = tk.Label(self.area_tablero, text=chr(ord('a')+i), font=('Arial', 10, 'bold'), bg='#1e1e2f', fg='#e0b973')
             letra.grid(row=8, column=i, pady=5)
     
     def mostrar_error(self, errores):
